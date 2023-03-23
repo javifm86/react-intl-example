@@ -1,0 +1,36 @@
+{
+  "a.hello": [
+    {
+      "children": [
+        {
+          "type": 0,
+          "value": "hello"
+        }
+      ],
+      "type": 8,
+      "value": "bold"
+    }
+  ],
+  "a.richtext": [
+    {
+      "type": 0,
+      "value": "I have "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "num"
+        }
+      ],
+      "type": 8,
+      "value": "test"
+    }
+  ],
+  "a.world": [
+    {
+      "type": 0,
+      "value": "world"
+    }
+  ]
+}

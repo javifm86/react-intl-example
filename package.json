@@ -12,15 +12,25 @@
     "@types/react-dom": "^18.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intl": "^6.2.10",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "prestart": "npm run literals:extract:compile",
     "build": "react-scripts build",
+    "prebuild": "npm run literals:extract:compile",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "literals:extract": "formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
+    "literals:compile": "formatjs compile 'temp.json'",
+    "postliterals:compile": "rm temp.json",
+    "literals:en": "npm run literals:compile -- --out-file src/lang/en.json",
+    "literals:en:ast": "npm run literals:compile -- --ast --out-file src/lang/en.json",
+    "literals:extract:compile": "npm-run-all literals:extract literals:en",
+    "literals:extract:compile:ast": "npm-run-all literals:extract literals:en:ast"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@formatjs/cli": "^6.0.4",
+    "npm-run-all": "^4.1.5"
   }
 }

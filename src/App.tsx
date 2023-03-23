@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import exampleMessages from "./messages/example";
+import otherMessages from "./messages/other";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FormattedMessage {...exampleMessages.hello} />{" "}
+      <FormattedMessage {...exampleMessages.world} />
+      <FormattedMessage
+        id={otherMessages.other.id}
+        defaultMessage={otherMessages.other.defaultMessage}
+        values={{ num: 99, test: (chunks: any) => <strong>{chunks}!!</strong> }}
+      />
     </div>
   );
 }
